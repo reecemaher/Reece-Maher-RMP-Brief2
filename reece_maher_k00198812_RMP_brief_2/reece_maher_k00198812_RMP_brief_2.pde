@@ -14,17 +14,26 @@ Capture video;
 
 void setup() {
   size(1920, 1080);
+  //load in the xml file
   xml = loadXML("controls.xml");
+  // access all children from the keyboardEvent tag 
   XML[] controllers = xml.getChildren("keyboardEvent");
+  
+  // access all children from the mouseEventevent tag 
   XML[] control = xml.getChildren("mouseEvent");
 
+//loop through all the tags named mouseEvent in this case there is only one
   for (int j = 0; j < control.length; j++) {
+    //get the value from the class id
     int id = control[j].getInt("id");
+    //get the value from the class moouseClick
     String event = control[j].getString("mouseClick");
+    // get the content inside of the mouseEvent tag
     String outcome = control[j].getContent();
     println(id + ", " + event + "= " + outcome);
   }
 
+//same procedure from above but applied to keyboardEvent tags
   for (int i = 0; i < controllers.length; i++) {
     int id = controllers[i].getInt("id");
     String event = controllers[i].getString("keyPressed");
@@ -35,7 +44,9 @@ void setup() {
 // smooth edgrs (anti ailisaing)
   smooth();
   minim = new Minim(this);
+  //load in the audio file
   music = minim.loadFile("Eminem.mp3", 512);
+  //play the audio file
   music.play();
   //in = minim.getLineIn();
   
@@ -67,9 +78,10 @@ void draw() {
     drops[i].update();
 
 //looping through the x pixels of the video for every instance where the x point of a drop passes over it 
-//if drops.x = 10 then it would loop through every 10nth pixel
+//if drops.x = 10 then it would loop through every 10nth pixel, these values are constantly changing 
+//so the distance between the resulting shapes that will be drawn are also changing to these values
     for (int x = 0; x < video.width; x +=drops[i].x ) {
-      println("d"+drops[i].x);
+     
       //looping through the y pixels of the video for every instance where the y point of a drop passes over it
       for (int y = 0; y < video.height; y +=drops[i].y ) {
 
@@ -110,7 +122,7 @@ void draw() {
         } else {
           //if no key is pressed draw ellipses on every point a drops x and y position is over the video capture are using colours the video is capturing
           ellipse(shapeX, shapeY, size, size);
-          println("s"+ shapeX);
+          
         }
       }
     }
