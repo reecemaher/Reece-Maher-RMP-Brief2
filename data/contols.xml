@@ -1,0 +1,10 @@
+<controls>
+    <mouseEvent id="0" mouseClick="when mouse is clicked">clolor made changes to HSB</mouseEvent>
+    
+    <keyboardEvent id="1" keyPressed="when the left arrow key is pressed">draws triangles over the video instead of circles</keyboardEvent>
+    
+    <keyboardEvent id="2" keyPressed="when the right arrow key is pressed">draws rectangles over the video instead of circles</keyboardEvent>
+
+
+
+</controls>
